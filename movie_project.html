@@ -3,10 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie Project</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body>
 <button id="displayMovies">Display Movies</button>
-<div id="movies"></div>
+<div class="movies" id="movies"></div>
+
+<form>
+    <div class="form-group">
+        <label for="addMovie">Add Movie</label>
+        <input class="addMovie" id="addMovie">
+        <small id="addMovieHelp" class="form-text text-muted">Enter the movie name and rating</small>
+    </div>
+    <div class="form-group">
+        <label for="rating">Movie Rating</label>
+        <input class="rating" id="rating">
+        <small id="ratingHelp" class="form-text text-muted">Enter the rating</small>
+    </div>
+
+    <button type="submit" class="submitMovie" id="submitMovie">Submit</button>
+</form>
+
+<form>
+    <div class="form-group">
+        <label for="deleteMovie">Delete Movie</label>
+        <input class="deleteMovie" id="deleteMovie">
+        <small id="deleteMovieHelp" class="form-text text-muted">Delete Movie</small>
+    </div>
+
+
+    <button type="submit" class="submitMovie" id="delMovie">Submit</button>
+</form>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
