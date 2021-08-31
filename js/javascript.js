@@ -1,9 +1,21 @@
 "use strict"
-$(document).ready(function() {
+$(document).ready(function () {
 
     const MOVIE_URL = 'https://early-intermediate-open.glitch.me/movies'
 
-    // let allMovies = [];
+//     fetch(MOVIE_URL)
+//         .then(res => res.json())
+//         .then( movie => {
+//             movie.forEach( movie => {
+//
+//                 $("#movies").append(`<h1>${movie.title}</h1><h2>Rating: ${movie.rating}</h2>`);
+//             });
+//         })
+//         .catch(console.error))
+// });
+
+
+// let allMovies = [];
     // const getMovies = () => fetch(MOVIE_URL)
     //     .then(res => res.json())
     //     .then(res => {
@@ -18,13 +30,15 @@ $(document).ready(function() {
     //     })
     // });
 
-    $("#displayMovies").on('click', () => fetch(MOVIE_URL)
+    const getMovies = () => fetch(MOVIE_URL)
         .then(res => res.json())
-        .then( movie => {
-            movie.forEach( movie => {
+        .then(movie => {
+            movie.forEach(movie => {
 
                 $("#movies").append(`<h1>${movie.title}</h1><h2>Rating: ${movie.rating}</h2>`);
             });
         })
-        .catch(console.error))
-});
+        .catch(console.error)
+})
+$("#displayMovies").on('click', getMovies);
+
