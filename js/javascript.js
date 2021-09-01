@@ -1,18 +1,30 @@
 "use strict"
 $(document).ready(function () {
 
-    const MOVIE_URL = 'https://early-intermediate-open.glitch.me/movies'
+    const MOVIE_URL = 'https://lyrical-intriguing-othnielia.glitch.me/movies'
 
     //FETCH REQUEST AND RENDER HTML*********************************************
+    function loadScreen() {
 
+    }
     const getMovies = () => fetch(MOVIE_URL)
         .then(res => res.json())
         .then(movies => {
             let html = '';
+            let movieList = '';
+
             movies.forEach(movie => {
-                html += `<div class="card mb-1" data-number="${movie.id}" style="width: 24rem"><h1>${movie.title}</h1><h2>Rating: ${movie.rating}</h2><button class="delMovie")">Delete</button></div>`;
+
+                html += `<div class="card mb-1" data-number="${movie.id}" style="width: 24rem">
+                    <h3>${movie.title}</h3>
+                    <h4>Rating: ${movie.rating}</h4>
+                    <button class="delMovie")">Delete</button></div>`;
+
+                movieList += `<option data-number="${movie.id}">${movie.title}</option>`
             })
+
             $('#movies').html(html);
+            $('#movie-selection').html(movieList);
         })
         .catch(console.error);
 
@@ -43,8 +55,20 @@ $(document).ready(function () {
         .then(res => res.json())
         .then(() => {
             console.log(`Success: movie with id of ${id}`);
-        })
+            })
         .catch(console.error);
+
+
+    // Give users the option to edit an existing movie
+    // A form should be pre-populated with the selected movie's details
+    // Like creating a movie, this should not involve any page reloads, instead your javascript code should make an ajax request when the form is submitted.
+
+
+
+
+
+
+
 
     //EVENT HANDLERS*****************************************************************
 
@@ -68,3 +92,4 @@ $(document).ready(function () {
 
     getMovies();
 });
+
