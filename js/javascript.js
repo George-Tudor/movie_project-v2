@@ -1,17 +1,34 @@
 "use strict"
 $(document).ready(function () {
 
-    const MOVIE_URL = 'https://early-intermediate-open.glitch.me/movies'
+    const MOVIE_URL = 'https://lyrical-intriguing-othnielia.glitch.me/movies'
 
+    //FETCH REQUEST AND RENDER HTML*********************************************
+    function loadScreen() {
+
+    }
     const getMovies = () => fetch(MOVIE_URL)
         .then(res => res.json())
-        .then(movie => {
-            movie.forEach(movie => {
+        .then(movies => {
+            let html = '';
+            let movieList = '';
 
-                $("#movies").append(`<div class="card mb-1" style="width: 24rem"="><h1>${movie.title}</h1><h2>Rating: ${movie.rating}</h2><button class="deleteMovie">Delete</button></div>`);
-            });
+            movies.forEach(movie => {
+
+                html += `<div class="card mb-1" data-number="${movie.id}" style="width: 24rem">
+                    <h3>${movie.title}</h3>
+                    <h4>Rating: ${movie.rating}</h4>
+                    <button class="delMovie")">Delete</button></div>`;
+
+                movieList += `<option data-number="${movie.id}">${movie.title}</option>`
+            })
+
+            $('#movies').html(html);
+            $('#movie-selection').html(movieList);
         })
-        .catch(console.error)
+        .catch(console.error);
+
+    //ADD MOVIES FUNCTION******************************************************
 
     const addMovies = (movie) => fetch(`${MOVIE_URL}`, {
         method: 'POST',
@@ -27,6 +44,8 @@ $(document).ready(function () {
         })
         .catch(console.error);
 
+    //DELETE MOVIES FUNCTION******************************************************
+
     const deleteMovie = id => fetch(`${MOVIE_URL}/${id}`, {
         method: 'DELETE',
         headers: {
@@ -36,68 +55,41 @@ $(document).ready(function () {
         .then(res => res.json())
         .then(() => {
             console.log(`Success: movie with id of ${id}`);
-        })
+            })
         .catch(console.error);
+
+
+    // Give users the option to edit an existing movie
+    // A form should be pre-populated with the selected movie's details
+    // Like creating a movie, this should not involve any page reloads, instead your javascript code should make an ajax request when the form is submitted.
+
+
+
+
+
+
+
+
+    //EVENT HANDLERS*****************************************************************
 
     $("#displayMovies").on('click', getMovies);
 
-    $("#submitMovie").on('click', function(e) {
+    $("#submitMovie").on('click', function (e) {
         e.preventDefault();
         let currentMovie = $("#addMovie").val();
         let currentRating = $("#rating").val();
-        let movieObj = {title:currentMovie, rating: currentRating};
+        let movieObj = {title: currentMovie, rating: currentRating};
         addMovies(movieObj);
-        getMovies();
     });
 
-    $("#delMovie").on('click', function(e) {
+
+    $(document).on('click', '.delMovie', function (e) {
         e.preventDefault();
-        let currentId = $("#deleteMovie").val();
+        let currentId = $(this).parent().data('number');
         console.log(currentId)
         deleteMovie(currentId);
     });
 
-
     getMovies();
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     fetch(MOVIE_URL)
-//         .then(res => res.json())
-//         .then( movie => {
-//             movie.forEach( movie => {
-//
-//                 $("#movies").append(`<h1>${movie.title}</h1><h2>Rating: ${movie.rating}</h2>`);
-//             });
-//         })
-//         .catch(console.error))
-// });
-
-
-// let allMovies = [];
-// const getMovies = () => fetch(MOVIE_URL)
-//     .then(res => res.json())
-//     .then(res => {
-//         allMovies = res;
-//     })
-//     .catch(console.error);
-//
-//
-// $("displayMovies").on('click', function () {
-//     allMovies.forEach(movie => {
-//         $("#movies").append(`<h1>${movie.title}</h1><h2>Rating: ${movie.rating}</h2>`);
-//     })
-// });
