@@ -3,15 +3,20 @@ $(document).ready(function () {
 
     const MOVIE_URL = 'https://early-intermediate-open.glitch.me/movies'
 
+    //FETCH REQUEST AND RENDER HTML*********************************************
+
     const getMovies = () => fetch(MOVIE_URL)
         .then(res => res.json())
-        .then(movie => {
-            movie.forEach(movie => {
-
-                $("#movies").append(`<div class="card mb-1" style="width: 24rem"="><h1>${movie.title}</h1><h2>Rating: ${movie.rating}</h2><button class="deleteMovie">Delete</button></div>`);
-            });
+        .then(movies => {
+            let html = '';
+            movies.forEach(movie => {
+                html += `<div class="card mb-1" data-number="${movie.id}" style="width: 24rem"><h1>${movie.title}</h1><h2>Rating: ${movie.rating}</h2><button class="delMovie")">Delete</button></div>`;
+            })
+            $('#movies').html(html);
         })
-        .catch(console.error)
+        .catch(console.error);
+
+    //ADD MOVIES FUNCTION******************************************************
 
     const addMovies = (movie) => fetch(`${MOVIE_URL}`, {
         method: 'POST',
@@ -27,6 +32,8 @@ $(document).ready(function () {
         })
         .catch(console.error);
 
+    //DELETE MOVIES FUNCTION******************************************************
+
     const deleteMovie = id => fetch(`${MOVIE_URL}/${id}`, {
         method: 'DELETE',
         headers: {
@@ -39,65 +46,25 @@ $(document).ready(function () {
         })
         .catch(console.error);
 
+    //EVENT HANDLERS*****************************************************************
+
     $("#displayMovies").on('click', getMovies);
 
-    $("#submitMovie").on('click', function(e) {
+    $("#submitMovie").on('click', function (e) {
         e.preventDefault();
         let currentMovie = $("#addMovie").val();
         let currentRating = $("#rating").val();
-        let movieObj = {title:currentMovie, rating: currentRating};
+        let movieObj = {title: currentMovie, rating: currentRating};
         addMovies(movieObj);
-        getMovies();
     });
 
-    $("#delMovie").on('click', function(e) {
+
+    $(document).on('click', '.delMovie', function (e) {
         e.preventDefault();
-        let currentId = $("#deleteMovie").val();
+        let currentId = $(this).parent().data('number');
         console.log(currentId)
         deleteMovie(currentId);
     });
 
-
     getMovies();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     fetch(MOVIE_URL)
-//         .then(res => res.json())
-//         .then( movie => {
-//             movie.forEach( movie => {
-//
-//                 $("#movies").append(`<h1>${movie.title}</h1><h2>Rating: ${movie.rating}</h2>`);
-//             });
-//         })
-//         .catch(console.error))
-// });
-
-
-// let allMovies = [];
-// const getMovies = () => fetch(MOVIE_URL)
-//     .then(res => res.json())
-//     .then(res => {
-//         allMovies = res;
-//     })
-//     .catch(console.error);
-//
-//
-// $("displayMovies").on('click', function () {
-//     allMovies.forEach(movie => {
-//         $("#movies").append(`<h1>${movie.title}</h1><h2>Rating: ${movie.rating}</h2>`);
-//     })
-// });
