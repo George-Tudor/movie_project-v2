@@ -3,50 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie Project</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <h1>The BEST movies!!!</h1>
 <div class="movies" id="movies"></div>
 
+<div id="loadScreen" style="width:360px;max-width:100%;">
+
+</div>
+
 <h1>Add a Movie!</h1>
 <form>
     <div class="form-group">
-        <label for="addMovie">Add Movie</label>
+        <label for="addMovie">Enter Movie</label>
         <input class="addMovie" id="addMovie">
-        <small id="addMovieHelp" class="form-text text-muted">Enter the movie name and rating</small>
+        <small id="addMovieHelp" class="form-text text-muted">Enter the movie name</small>
     </div>
     <div class="form-group">
-        <label for="rating">Movie Rating</label>
+        <label for="rating">Enter Rating</label>
         <input class="rating" id="rating">
         <small id="movieRatingHelp" class="form-text text-muted">Enter the rating</small>
     </div>
 
-    <button type="submit" class="submitMovie" id="submitMovie">Submit</button>
+    <button type="submit" class="submitMovie" id="submitMovie">Add Movie</button>
 </form>
 
 <div id="selector" class="form-group">
     <h1>Select Movie to Edit</h1>
-    <select class="form-control" id="movie-selection">
+    <select class="movie-selector" id="movie-selection">
     </select>
 </div>
 <div class="form-group">
-    <label for="rating">Change Movie Title</label>
-    <input class="rating" id="editMovie">
+    <label for="movieTitle">Change Movie Title</label>
+    <input class="movieTitle" id="editMovie">
     <small id="editMovieHelp" class="form-text text-muted">Change movie rating</small>
 </div>
-<div class="form-group">
+<div class="form-group" id="selectForm">
     <label for="rating">Change Movie Rating</label>
-    <input class="rating" id="editRating">
     <small id="ratingHelp" class="form-text text-muted">Enter the rating</small>
+    <input type="text" class="rating" id="editRating">
 </div>
 
-<button type="submit" class="submitMovie" id="editButton">Submit</button>
-</form>
+<button type="submit" class="submitMovie" id="editButton">Edit Movie</button>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossOrigin="anonymous"></script>
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossOrigin="anonymous"></script>
 <script src="js/javascript.js">
 </script>
 </body>

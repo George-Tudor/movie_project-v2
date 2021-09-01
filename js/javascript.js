@@ -3,28 +3,49 @@ $(document).ready(function () {
 
     const MOVIE_URL = 'https://lyrical-intriguing-othnielia.glitch.me/movies'
 
-    //FETCH REQUEST AND RENDER HTML*********************************************
-    function loadScreen() {
+//     function loading() {
+//             $('#loadScreen').html(`<div style="height:0;padding-bottom:56.11%;position:relative;">
+//         <iframe width="360" height="202" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameBorder="0" src="https://imgflip.com/embed/36o4a6"></iframe>
+//     </div>
+//     <p><a href="https://imgflip.com/gif/36o4a6">via Imgflip</a></p>`)
+//             }
+// loading();
 
-    }
+    //FETCH REQUEST AND RENDER HTML*********************************************
     const getMovies = () => fetch(MOVIE_URL)
+    // gifLoader()
         .then(res => res.json())
         .then(movies => {
             let html = '';
-            let movieList = '';
+            let movieList = '<option>Select a Movie</option>';
 
             movies.forEach(movie => {
 
                 html += `<div class="card mb-1" data-number="${movie.id}" style="width: 24rem">
                     <h3>${movie.title}</h3>
                     <h4>Rating: ${movie.rating}</h4>
-                    <button class="delMovie")">Delete</button></div>`;
+                    <button class="delMovie">Delete</button></div>`;
 
-                movieList += `<option data-number="${movie.id}">${movie.title}</option>`
+                movieList += `<option data-rating="${movie.rating}" data-number="${movie.id}">${movie.title}</option>`
+
             })
+
+            // var listItem = movieList.value;
+            // if (listItem) {
+            //     $('#editMovie').
+            //      }
+
+                // else {
+            //     coffees.forEach(function (coffee) {
+            //         if (coffee.roast === selectedRoast) {
+            //             filteredCoffees.push(coffee);
+            //         }
+            //     });
+            //     body.innerHTML = renderCoffees(filteredCoffees);
 
             $('#movies').html(html);
             $('#movie-selection').html(movieList);
+            //setTimeout(hideLoadingGif, 3000)
         })
         .catch(console.error);
 
@@ -44,6 +65,22 @@ $(document).ready(function () {
         })
         .catch(console.error);
 
+    //EDIT MOVIES FUNCTION********************************************************
+
+
+    const editMovies = (movie) => fetch(`${MOVIE_URL}/${movie.id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(movie)
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(`Success: edited ${JSON.stringify(movie)}`);
+        })
+        .catch(console.error);
+
     //DELETE MOVIES FUNCTION******************************************************
 
     const deleteMovie = id => fetch(`${MOVIE_URL}/${id}`, {
@@ -59,16 +96,6 @@ $(document).ready(function () {
         .catch(console.error);
 
 
-    // Give users the option to edit an existing movie
-    // A form should be pre-populated with the selected movie's details
-    // Like creating a movie, this should not involve any page reloads, instead your javascript code should make an ajax request when the form is submitted.
-
-
-
-
-
-
-
 
     //EVENT HANDLERS*****************************************************************
 
@@ -80,8 +107,23 @@ $(document).ready(function () {
         let currentRating = $("#rating").val();
         let movieObj = {title: currentMovie, rating: currentRating};
         addMovies(movieObj);
+
     });
 
+    $('#movie-selection').on('change', function() {
+        $('#editMovie').attr("placeholder", $('#movie-selection').val())
+        $('#editRating').attr("placeholder", $("#movie-selection option:selected")[0].dataset.rating)
+    });
+
+    $("#editButton").on('click', function (e) {
+        e.preventDefault();
+        let newMovie = $("#editMovie").val();
+        let newRating = $("#editRating").val();
+        let movieId = $("#movie-selection option:selected")[0].dataset.number
+        let newObj = {title: newMovie, rating: newRating, id: movieId};
+        editMovies(newObj);
+
+    });
 
     $(document).on('click', '.delMovie', function (e) {
         e.preventDefault();
