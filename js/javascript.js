@@ -3,19 +3,18 @@ $(document).ready(function () {
 
     const MOVIE_URL = 'https://lyrical-intriguing-othnielia.glitch.me/movies'
 
-//     function loading() {
-//             $('#loadScreen').html(`<div style="height:0;padding-bottom:56.11%;position:relative;">
-//         <iframe width="360" height="202" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameBorder="0" src="https://imgflip.com/embed/36o4a6"></iframe>
-//     </div>
-//     <p><a href="https://imgflip.com/gif/36o4a6">via Imgflip</a></p>`)
-//             }
-// loading();
+
+
 
     //FETCH REQUEST AND RENDER HTML*********************************************
     const getMovies = () => fetch(MOVIE_URL)
-    // gifLoader()
+
         .then(res => res.json())
         .then(movies => {
+            setTimeout(function () {
+                $('#loading').css("visibility", "hidden");
+                $('#content').css("visibility", "visible");
+            }, 4000);
             let html = '';
             let movieList = '<option>Select a Movie</option>';
 
@@ -134,4 +133,5 @@ $(document).ready(function () {
 
     getMovies();
 });
+
 
