@@ -1,0 +1,21 @@
+
+#loading img {
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    /*z-index: 1;*/
+}
+
+
+#loading {
+    visibility: visible;
+}
+
+#content {
+    visibility: hidden;
+}
+
+.movie-selector {
+    width: 500px;
+}
