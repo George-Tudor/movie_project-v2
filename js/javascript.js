@@ -50,6 +50,7 @@ $(document).ready(function () {
             console.log(`Success: created ${JSON.stringify(movie)}`);
             return movie.id; // to access the primary key of the newly created entity
         })
+        .then()
         .catch(console.error);
 
     //EDIT MOVIES FUNCTION********************************************************
