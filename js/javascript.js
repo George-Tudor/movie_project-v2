@@ -94,7 +94,7 @@ $(document).ready(function () {
         let currentRating = $("#rating").val();
         let movieObj = {title: currentMovie, rating: currentRating};
         addMovies(movieObj);
-        $('#movies').append(`<div class="card mb-1"  style="width: 24rem">
+        $('#movies').append(`<div class="card mb-1" style="width: 24rem">
                     <h3>${currentMovie}</h3>
                     <h4>Rating: ${currentRating}</h4>
                     <button class="delMovie">Delete</button></div>`);
@@ -120,9 +120,8 @@ $(document).ready(function () {
         let currentId = $(this).parent().data('number');
         console.log(currentId)
         deleteMovie(currentId);
-        $('#movies').click(function() {
+        $(this).parent().remove();
 
-        });
     });
 
     getMovies();
