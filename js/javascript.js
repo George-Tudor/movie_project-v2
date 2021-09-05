@@ -14,7 +14,7 @@ $(document).ready(function () {
             setTimeout(function () {
                 $('#loading').css("visibility", "hidden");
                 $('#content').css("visibility", "visible");
-            }, 4000);
+            }, 3000);
             let html = '';
             let movieList = '<option>Select a Movie</option>';
 
@@ -29,18 +29,6 @@ $(document).ready(function () {
 
             })
 
-            // var listItem = movieList.value;
-            // if (listItem) {
-            //     $('#editMovie').
-            //      }
-
-                // else {
-            //     coffees.forEach(function (coffee) {
-            //         if (coffee.roast === selectedRoast) {
-            //             filteredCoffees.push(coffee);
-            //         }
-            //     });
-            //     body.innerHTML = renderCoffees(filteredCoffees);
 
             $('#movies').html(html);
             $('#movie-selection').html(movieList);
@@ -106,7 +94,10 @@ $(document).ready(function () {
         let currentRating = $("#rating").val();
         let movieObj = {title: currentMovie, rating: currentRating};
         addMovies(movieObj);
-
+        $('#movies').append(`<div class="card mb-1"  style="width: 24rem">
+                    <h3>${currentMovie}</h3>
+                    <h4>Rating: ${currentRating}</h4>
+                    <button class="delMovie">Delete</button></div>`);
     });
 
     $('#movie-selection').on('change', function() {
@@ -129,6 +120,9 @@ $(document).ready(function () {
         let currentId = $(this).parent().data('number');
         console.log(currentId)
         deleteMovie(currentId);
+        $('#movies').click(function() {
+
+        });
     });
 
     getMovies();
