@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     const MOVIE_URL = 'https://lyrical-intriguing-othnielia.glitch.me/movies'
 
-
+    //https://api.themoviedb.org/3/movie/550?api_key=
 
 
     //FETCH REQUEST AND RENDER HTML*********************************************
@@ -14,16 +14,21 @@ $(document).ready(function () {
             setTimeout(function () {
                 $('#loading').css("visibility", "hidden");
                 $('#content').css("visibility", "visible");
-            }, 3000);
+            }, 1000);
             let html = '';
             let movieList = '<option>Select a Movie</option>';
 
             movies.forEach(movie => {
 
-                html += `<div class="card mb-1" data-number="${movie.id}" style="width: 24rem">
-                    <h3>${movie.title}</h3>
-                    <h4>Rating: ${movie.rating}</h4>
-                    <button class="delMovie">Delete</button></div>`;
+                html += `
+                    <div class="p-2">
+                        <div class="card mb-1 p-2" data-number="${movie.id}" style="width: 24rem">
+                            <h3>${movie.title}</h3>
+                            <h4>Rating: ${movie.rating}</h4>
+                            <button class="delMovie btn btn-outline-danger btn-sm">Delete</button>
+                        </div>
+                    </div>
+               `;
 
                 movieList += `<option data-rating="${movie.rating}" data-number="${movie.id}">${movie.title}</option>`
 

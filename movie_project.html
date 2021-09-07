@@ -15,7 +15,7 @@
 
 <div id="content">
 <h1>The Movie App</h1>
-<div class="movies" id="movies">
+<div class="movies d-flex flex-wrap" id="movies">
 
 </div>
 
@@ -23,30 +23,30 @@
 <form>
     <div class="form-group">
         <label for="addMovie">Enter Movie</label>
-        <input class="addMovie" id="addMovie">
+        <input class="addMovie form-control form-control-sm" id="addMovie">
     </div>
     <div class="form-group">
         <label for="rating">Enter Rating</label>
-        <input class="rating" id="rating">
+        <input class="rating form-control form-control-sm" id="rating">
      </div>
 
-    <button type="submit" class="submitMovie" id="submitMovie">Add Movie</button>
+    <button type="submit" class="submitMovie btn btn-outline-primary" id="submitMovie">Add Movie</button>
 </form>
 
 <div id="selector" class="form-group">
     <h1>Select Movie to Edit</h1>
-    <select class="movie-selector" id="movie-selection">
+    <select class="movie-selector form-control form-control-sm" id="movie-selection">
     </select>
 </div>
 <div class="form-group">
-    <label for="movieTitle">Change Movie Title</label>
-    <input class="movieTitle" id="editMovie">
+    <label for="editMovie">Change Movie Title</label>
+    <input class="movieTitle form-control form-control-sm" id="editMovie">
     <small id="editMovieHelp" class="form-text text-muted">Change movie rating</small>
 </div>
 <div class="form-group" id="selectForm">
     <label for="rating">Change Movie Rating</label>
     <small id="ratingHelp" class="form-text text-muted">Enter the rating</small>
-    <input type="text" class="rating" id="editRating">
+    <input type="text" class="rating form-control form-control-sm" id="editRating">
 </div>
 
 <button type="submit" class="submitMovie" id="editButton">Edit Movie</button>
