@@ -24,6 +24,7 @@ $(document).ready(function () {
                     <div class="p-2">
                         <div class="card mb-1 p-2" data-number="${movie.id}" style="width: 24rem">
                             <h3>${movie.title}</h3>
+                            <img src="img/batmanbegins.jpg">
                             <h4>Rating: ${movie.rating}</h4>
                             <button class="delMovie btn btn-outline-danger btn-sm">Delete</button>
                         </div>
@@ -100,10 +101,11 @@ $(document).ready(function () {
         let currentRating = $("#rating").val();
         let movieObj = {title: currentMovie, rating: currentRating};
         addMovies(movieObj);
-        $('#movies').append(`<div class="card mb-1" style="width: 24rem">
+        $('#movies').append(`<div class="card mb-1 p-2" style="width: 24rem">
                     <h3>${currentMovie}</h3>
                     <h4>Rating: ${currentRating}</h4>
-                    <button class="delMovie">Delete</button></div>`);
+                    <button class="delMovie btn btn-outline-danger btn-sm">Delete</button></div>
+                    `);
     });
 
     $('#movie-selection').on('change', function() {
